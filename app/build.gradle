@@ -19,6 +19,9 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // You must use the following property to specify additional ProGuard
+            // rules for dynamic feature modules.
+            proguardFiles 'proguard-rules-dynamic-features.pro'
         }
     }
 
@@ -27,6 +30,11 @@ android {
     // testOptions {
     //     unitTests.includeAndroidResources = true
     // }
+
+
+    dynamicFeatures = [":ar"]
+
+
 }
 
 dependencies {

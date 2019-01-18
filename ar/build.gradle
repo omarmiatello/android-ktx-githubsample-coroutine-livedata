@@ -1,0 +1,27 @@
+apply plugin: 'com.android.dynamic-feature'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+    }
+
+    android {
+        compileOptions {
+            sourceCompatibility 1.8
+            targetCompatibility 1.8
+        }
+    }
+}
+
+dependencies {
+    // implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':app')
+
+    implementation 'com.google.ar:core:1.6.0'
+    implementation 'com.google.ar.sceneform.ux:sceneform-ux:1.6.0'
+}

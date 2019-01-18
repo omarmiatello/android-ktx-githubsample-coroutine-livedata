@@ -5,4 +5,5 @@
     <string name="generic_retry">Retry</string>
     <string name="generic_error">Error</string>
     <string name="generic_no_result_for">No result for: %1$s</string>
+    <string name="title_ar">Augmented Reality</string>
 </resources>
