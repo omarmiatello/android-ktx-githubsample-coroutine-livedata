@@ -1,5 +1,8 @@
 package com.github.jacklt.githubsample.data
 
+import androidx.annotation.Keep
+
+@Keep
 data class RepositoryResponse(
     val name: String?,
     val full_name: String?,
