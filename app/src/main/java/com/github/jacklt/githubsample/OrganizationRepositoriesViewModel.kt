@@ -31,7 +31,7 @@ class OrganizationRepositoriesViewModel : ScopedViewModel() {
                         delay(500)
                         bestReposList.value = getAllRepo(q.trim())
                             .sortedByDescending { it.stars }
-                            .take(3)
+                            .take(10)
                     } else {
                         bestReposStatus.value = null
                     }

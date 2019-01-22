@@ -1,5 +1,6 @@
 package com.github.jacklt.githubsample
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,11 @@ import com.github.jacklt.githubsample.databinding.ActivityMainBinding
 import com.github.jacklt.githubsample.databinding.ItemRepositoryBinding
 import com.github.jacklt.githubsample.utils.BindingHolder
 import com.github.jacklt.githubsample.utils.openUrlInCustomTab
+import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
+import com.google.android.play.core.splitinstall.SplitInstallRequest
+import java.io.Serializable
 import kotlin.properties.Delegates
+
 
 class MainActivity : AppCompatActivity() {
     val repositoriesViewModel get() = ViewModelProviders.of(this).get(OrganizationRepositoriesViewModel::class.java)
@@ -38,6 +43,27 @@ class MainActivity : AppCompatActivity() {
     inner class ActivityHandler {
         fun clickRetry(view: View) {
             repositoriesViewModel.query.value = repositoriesViewModel.query.value
+        }
+
+        fun clickAr(view: View) {
+            val MODULE_AR = "ar"
+            val splitInstallManager = SplitInstallManagerFactory.create(this@MainActivity)
+            if (MODULE_AR in splitInstallManager.installedModules) {
+                startActivity(Intent().setClassName(packageName, "com.github.jacklt.ar.ArActivity")
+                    .putExtra("r", repositoriesViewModel.bestReposList.value.orEmpty() as Serializable))
+            } else {
+                val request = SplitInstallRequest.newBuilder()
+                    .addModule(MODULE_AR)
+                    .build()
+
+                splitInstallManager.startInstall(request)
+                    .addOnSuccessListener {
+                        startActivity(Intent().setClassName(packageName, "com.github.jacklt.ar.ArActivity"))
+                    }
+            }
+
+            // val installedModules = splitInstallManager.installedModules
+
         }
     }
 

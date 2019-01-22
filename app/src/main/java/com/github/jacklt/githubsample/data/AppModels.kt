@@ -1,6 +1,7 @@
 package com.github.jacklt.githubsample.data
 
 import androidx.annotation.Keep
+import java.io.Serializable
 
 @Keep
 data class RepositoryItem(
@@ -9,4 +10,4 @@ data class RepositoryItem(
     val url: String,
     val fork: Boolean,
     val stars: Int
-)
+) : Serializable
